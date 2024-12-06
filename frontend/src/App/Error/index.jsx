@@ -23,9 +23,8 @@ const ErrorPage = () => {
     return;
   }
 
-  const primarySupportEmail = "kelvin.t.luu@omb.eop.gov";
-  const secondarySupportEmails =
-    "neil.s.sharma@omb.eop.gov;william.slack@cms.hhs.gov";
+  const primarySupportEmail = "william.slack@gsa.gov";
+  const secondarySupportEmails = "";
   const subject = "Resume Review - Support Request";
   const messageBody = `Error ID: ${errorId}%0D%0A%0D%0APlease describe the error you encountered:`;
   const mailToLink = `mailto:${primarySupportEmail}?subject=${subject}&cc=${secondarySupportEmails}&body=${messageBody}`;
