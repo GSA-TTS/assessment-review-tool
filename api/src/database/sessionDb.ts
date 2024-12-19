@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { dbURI, env } from '../config';
+import { dbURI, env, dbDisableSSL } from '../config';
 
 // We had to change this out for the conn string in postgres 15+
 // https://node-postgres.com/features/ssl
@@ -10,10 +10,7 @@ import { dbURI, env } from '../config';
     max:20,
     idleTimeoutMillis:60000,
     connectionTimeoutMillis: 2000,
-    ssl:{
-      rejectUnauthorized: false
-    }
-  
+    ssl: dbDisableSSL ? false : { rejectUnauthorized: false }
 });
 };
 export default CreatePool;

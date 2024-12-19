@@ -1,5 +1,5 @@
 import Sequelize, { QueryOptionsWithType, QueryTypes, Transaction } from 'sequelize';
-import { dbURI, env } from '../config';
+import { dbURI, env, dbDisableSSL } from '../config';
 import { logger } from '../utils/logger';
 import { initModels } from '../models/init-models';
 
@@ -43,11 +43,7 @@ export default class DB implements DBInterface {
       dialect: "postgres",
       // https://node-postgres.com/features/ssl
       // https://sequelize.org/docs/v6/other-topics/dialect-specific-things/
-      dialectOptions: {
-        ssl:{
-          rejectUnauthorized: false,
-        }
-      }
+      dialectOptions: dbDisableSSL ? { ssl: false } : { ssl: { rejectUnauthorized: false } }
     });
     try {
       initModels(this.sequelize);

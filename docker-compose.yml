@@ -2,11 +2,13 @@ version: "3.7"
 
 services:
   api:
+    container_name: api
     build:
       context: api
       dockerfile: Dockerfile.compose
     environment:
       - POSTGRES_URI=postgres://docker_pg_user:docker_pg_pw@db:5432/docker_db
+      - POSTGRES_DISABLE_SSL=true
       - NODE_ENV=docker
       - PORT=9000
       - APP_ENV=docker
@@ -43,6 +45,7 @@ services:
     depends_on:
       - api
   db:
+    container_name: db
     image: postgres
     environment:
       - POSTGRES_DB=docker_db

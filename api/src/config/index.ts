@@ -60,6 +60,9 @@ const dbURI: string =
   (process.env.VCAP_SERVICES && JSON.parse(process.env.VCAP_SERVICES)["aws-rds"][0].credentials.uri) ||
   'postgres://docker_pg_user:docker_pg_pw@docker_db:5432/docker_db';
 
+// Disable SSL connections to PostgreSQL for local development.
+const dbDisableSSL:boolean = process.env.POSTGRES_DISABLE_SSL === 'true'
+
 const openIdConfig: OpenIDConfiguration = {
   issuerDiscover: process.env.ISSUER_DISCOVER || 'https://idp.int.identitysandbox.gov/.well-known/openid-configuration',
   clientId: process.env.CLIENT_ID || 'urn:gov:gsa:openidconnect.profiles:sp:sso:opm_usds:smeqa_staging',
@@ -73,6 +76,7 @@ const headerTokens: { [tokenName: string]: string } = headerTokenString;
 
 export { env };
 export { dbURI };
+export { dbDisableSSL };
 export { openIdConfig };
 export { sessionConfig };
 export { headerTokens };
