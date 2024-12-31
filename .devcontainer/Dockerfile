@@ -9,7 +9,8 @@ RUN curl -L -o /tmp/cf8.deb https://github.com/cloudfoundry/cli/releases/downloa
 
 # Install other helpful tools
 RUN apt-get update \
-    && apt-get install -y netcat
+    && apt-get install -y netcat \
+    && apt-get install -y postgresql-client
 
 # Install the cf-service-connect plugin to allow easy access to Postgres
 # See: https://github.com/cloud-gov/cf-service-connect
