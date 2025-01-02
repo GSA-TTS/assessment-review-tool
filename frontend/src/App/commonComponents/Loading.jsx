@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingOverlay from "react-loading-overlay";
+import LoadingOverlay from "@ronchalant/react-loading-overlay";
 
 /**
  *
