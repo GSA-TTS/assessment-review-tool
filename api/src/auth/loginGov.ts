@@ -28,7 +28,7 @@ async function generateStrategy() {
   };
   const params = {
     response_type: 'code',
-    acr_values: 'http://idmanagement.gov/ns/assurance/ial/1',
+    acr_values: 'urn:acr.login.gov:auth-only',
     scope: 'email',
     redirect_uri: openIdConfig.redirectUri,
     nonce: randomString(32),
