@@ -2,14 +2,16 @@ FROM node:14.21.3-alpine
 
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+COPY package*.json .
 
-RUN npm install
+RUN npm ci
 
-COPY . ./app
+COPY . .
 
-ENV PORT=9000
+# npm build:assets (invoked by build) expects src/client to exist, so create it.
+RUN mkdir -p src/client
+RUN npm run build
+
 EXPOSE 9000
 
-CMD ["npm", "start"]
+CMD ["node", "./build/server.js"]
