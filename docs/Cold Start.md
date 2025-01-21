@@ -47,7 +47,7 @@ To change your space or org for the cloud foundry session:
     export POSTGRES=postgres://<USERNAME>:<PASSWORD>@localhost:<PORT>/<DB_NAME>
     # You should only need to replace the URL with "localhost". The username, password, port, and db name should all work.
     ```
-    > Once this is done, you should be able to run `db/migrations.sh`
+    > Once this is done, you should be able to run `/db/migrations.sh`
 9. Create the Admin token for uploads:
     `$ cf set-env $APP_NAME ADMIN_TOKEN <RANDOM STRING>`
     `$ cf restage $APP_NAME`
