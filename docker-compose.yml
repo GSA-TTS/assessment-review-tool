@@ -1,4 +1,24 @@
 services:
+  traefik:
+    image: traefik:v3.3
+    container_name: traefik
+    command:
+      - "--log.level=DEBUG"
+      # api.insecure opens up port 8080
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--accesslog=true"
+      - "--providers.file.filename=/opt/traefik.yml"
+    ports:
+      - "4443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "${PWD}/localcert:/opt/cert:ro"
+      - "${PWD}/traefik.yml:/opt/traefik.yml:ro"
   api:
     container_name: api
     build:
@@ -20,7 +40,7 @@ services:
     depends_on:
       - db
   frontend:
-    container_name: FE
+    container_name: frontend
     stdin_open: true
     build:
       context: frontend
@@ -29,12 +49,19 @@ services:
       - REACT_APP_ENV=docker
       - CHOKIDAR_USEPOLLING=true
       - PORT=8000
+      # Disabling host checking is necessary for serving behind Traefik.
+      - DANGEROUSLY_DISABLE_HOST_CHECK=true
     ports:
       - 8000:8000
     expose:
       - 8000
     depends_on:
       - api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls=true"
+      - "traefik.http.routers.frontend.rule=Host(`smeqa.local`)"
   db:
     container_name: db
     image: postgres

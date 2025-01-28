@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    - certFile: ./opt/cert/domain.crt
+      keyFile: ./opt/cert/domain.key
