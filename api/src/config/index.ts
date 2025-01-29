@@ -16,7 +16,8 @@ export class SessionConfiguration {
   cookie: {
     secure: boolean;
     httpOnly: boolean;
-    maxAge: number
+    maxAge: number,
+    sameSite: boolean
   };
   store: any | undefined;
 
@@ -28,7 +29,9 @@ export class SessionConfiguration {
     this.cookie = {
       secure: true,
       httpOnly: true,
-      maxAge: 60000 * 60 * 24
+      maxAge: 60000 * 60 * 24,
+      // sameSite: true enables strict
+      sameSite: true
     };
   }
 
