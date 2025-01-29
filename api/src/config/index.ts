@@ -13,7 +13,12 @@ export class SessionConfiguration {
   name: string;
   saveUninitialized: boolean;
   resave: boolean;
-  cookie: { secure: boolean; httpOnly: boolean; maxAge: number };
+  cookie: {
+    secure: boolean;
+    httpOnly: boolean;
+    maxAge: number,
+    sameSite: boolean
+  };
   store: any | undefined;
 
   constructor(secret: string | undefined, name: string | undefined) {
@@ -21,7 +26,13 @@ export class SessionConfiguration {
     this.name = name || 'sess';
     this.resave = false;
     this.saveUninitialized = true;
-    this.cookie = { secure: false, httpOnly: true, maxAge: 60000 * 60 * 24 };
+    this.cookie = {
+      secure: true,
+      httpOnly: true,
+      maxAge: 60000 * 60 * 24,
+      // sameSite: true enables strict
+      sameSite: true
+    };
   }
 
   public setStore(store: any) {
