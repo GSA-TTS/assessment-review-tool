@@ -118,7 +118,7 @@ const ResumeReview = ({
                 <p>Completing a resume review involves the following steps:</p>
                 <ol>
                   <li>
-                    Find the applicant's resume in the email sent by the U.S. Digital Corps team. Please refer to the ID key sent by the U.S. Digital Corps team to identify the correct resume.
+                    Find the applicant's resume in the email sent by the U.S. Digital Corps team.
                   </li>
                   <li>
                     Align the browser window alongside the resume so that you can see both at the same time.
@@ -127,10 +127,14 @@ const ResumeReview = ({
                     Review two pages of experience (starting with the first line of experience) to assess if they meet the minimum qualifications with experience. Look for evidence of each competency in their resume — use the experience they describe in their resume rather than searching for keywords.
                   </li>
                   <li>
-                    Select "Yes" if the applicant's resume reflects a given competency. Under "Evaluation Justification," indicate where in the resume you found support for your rating (i.e., the role and/or year that add to 52 weeks).
+                    Select "Yes" if the applicant's resume reflects a given competency. Under "Evaluation Justification," indicate where in the resume you found support for your rating (i.e., the role and/or year).
                   </li>
                   <li>
-                    Select "No" if the applicant's resume does not reflect a specific competency. Under "Evaluation Justification," explain why the resume does not meet the competency. Specify whether there is insufficient evidence of specific areas of the competency or of the competency as a whole. Provide any additional information necessary to help others retrace your decision.
+                    Select "No" if the applicant's resume does not reflect a specific competency. Under "Evaluation
+Justification," explain why the resume does not meet the competency. Specify whether there is insufficient evidence of specific areas of the competency or of the competency as a whole. Provide any additional information necessary to help others retrace your decision.
+                  </li>
+                  <li>
+                    Determine if the candidate has 52 weeks of cumulative full-time specialized experience in the competencies at the GS-7 level.
                   </li>
                   <li>
                     Click "Finish Review" to move to the next applicant.
