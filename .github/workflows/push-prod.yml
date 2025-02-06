@@ -62,10 +62,10 @@ jobs:
           path: ./api/src/client
           key: ${{ runner.os }}-frontend-src-prod-${{ hashFiles('./frontend/src/**/*', './frontend/package.json') }}
 
-      # Build frontend (requires node 12)
+      # Build frontend (requires node 16)
       - uses: actions/setup-node@v2
         with:
-          node-version: "12"
+          node-version: "16"
 
       - name: Install frontend dependencies
         if: steps.frontend-npm-cache.outputs.cache-hit != 'true'
