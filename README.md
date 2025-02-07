@@ -38,5 +38,6 @@ The caching is fairly aggressive for the build process. This might cause some is
 - [Database docs and how to connect to a production database](/db/README.md)
 - [Hiring action files and scripts](/assessmentHurdleExamples/README.md)
 - [GitHub Actions Deployment](/docs/githubActionsDeployment.md)
+- [Notes on the Cloud.gov Buildpack and Node versions used][/docs/buildpackNodeNotes.md]
 - [Cold Start - Setup on Cloud.gov from scratch](/docs/Cold\ Start.md)
 - [What to do if deploy credentials are compromised](/docs/cloudFoundryCompromised.md)
