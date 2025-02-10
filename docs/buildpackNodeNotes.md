@@ -24,7 +24,7 @@ On Cloud.gov, api and frontend run in the same process, by the same buildpack
 instance. The GitHub Action which deploys api deploys it alongside frontend, and
 they both run in Node 18.
 
-My assumption is that `engine`’s Node version was bumped based on output from the
+The team's assumption is that `engine`’s Node version was bumped based on output from the
 NodeJS buildpack during the GitHub Action run, which (looking at past, successful
 builds) outputs log lines like this:
 
@@ -34,7 +34,7 @@ your app to use version 18.20.4 instead of version 18.20.3 as soon as possible.
 Old versions of node are only provided to assist in migrating to newer versions.
 ```
 
-I suspect at some point in the past, there was a buildpack which supported Node 14.
+We suspect at some point in the past, there was a buildpack which supported Node 14.
 This buildpack was then deprecated, and api’s `engine`, which defines the runtime
 environment for both frontend and api, was updated to the (much) newer Node version
 accordingly.

@@ -5,8 +5,8 @@ but you'll need a way to use the application's [docker-compose.yml](/docker-comp
 file so the simplest path forward is just to use Rancher, which ships with docker-compose
 compatibility.
 
-You will likely encounter difficulties trying to run this on your GFE. The best path
-forward is to use a [GitHub Codespace](#github-codespace).
+You will likely encounter difficulties trying to run this on your GFE. One path
+ is to use a [GitHub Codespace](#github-codespace).
 
 # Tools
 ## Necessary
@@ -41,7 +41,7 @@ This will start everything after rebuilding our containers.
 
 ### Populate Local Data
 
-The application isn't very useful without data, so you'll need to populate it with some
+The application can't be tested without data, so you'll need to populate it with some
 dummy data. Data for local development is located in
 [assessmentHurdleExamples/resumeYesNoOnlySmall/](/assessmentHurdleExamples/resumeYesNoOnlySmall).
 
