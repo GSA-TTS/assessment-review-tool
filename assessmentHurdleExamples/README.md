@@ -8,6 +8,8 @@ For any hiring action that you create you will need 5 files:
 - `specialties.json`
 - `users.json`
 
+See: [Scripts](#scripts).
+
 Examples of these are all located in `resumeYesNoOnlySmall`, with more details below.
 
 ## Applicants.csv
@@ -71,3 +73,14 @@ This file contains all the specialties that an action is evaluating. Due to the 
 
 There are two roles: 
 Role of type `1` are HR uses, role of type `2` are SME users.
+
+# Scripts
+
+There are several scripts used to load hiring actions located in [util/](util).
+
+- [hiringAction.sh](util/hiringAction.sh) - Use this load hiring actions aka assessment hurdles into an instance of the application.
+- [addUsers.sh](util/addUsers.sh) - Use this to add SME or HR reviewers, users, to an assessment hurdle.
+- [addApplicants.sh](util/addApplicants.sh) - Use this to load applicants, or candidates, to a hiring action.
+- [addSpecialties.sh](util/addSpecialties.sh) - Use this to add competencies and specialties to hiring actions
+
+There are more files than just these, but these are the ones you'll likely rely on the most.

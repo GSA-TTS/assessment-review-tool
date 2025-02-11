@@ -1,3 +1,25 @@
+# Cheatsheet
+To login to Cloud.gov from the command line using `cf`:
+
+```sh
+cf login -a api.fr.cloud.gov --sso
+```
+
+Note: `cf` is installed in the devcontainer (i.e. GitHub Codespace) which is defined in [/.devcontainer](./devcontainer).
+See: [/docs/localDevelopment.md#github-codespace](GitHub Codespace).
+
+To connect to PostgreSQL, which will drop you to a `psql` prompt:
+
+```
+cf connect-to-service <app-name> <database-name>
+```
+
+To obtain the name of the database (because the database is a Cloudfoundry `service`):
+
+```sh
+cf services
+```
+
 # Schema
 [Schema](../backend/db)
 
@@ -45,8 +67,6 @@ More details are here:
 https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-services.html
 
 In a separate terminal window, run the following:
-
-
 
 
 ```

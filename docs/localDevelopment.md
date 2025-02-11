@@ -1,34 +1,62 @@
 # Local Development
 
-## Necessary Tools
+You'll need Rancher to run this application locally. You can use another container runtime
+but you'll need a way to use the application's [docker-compose.yml](/docker-compose.yml)
+file so the simplest path forward is just to use Rancher, which ships with docker-compose
+compatibility.
+
+You will likely encounter difficulties trying to run this on your GFE. One path
+ is to use a [GitHub Codespace](#github-codespace).
+
+# Tools
+## Necessary
 
 - jq
-- docker
+- Rancher
 - [mkcert](https://github.com/FiloSottile/mkcert)
 
-## Useful tools
+TODO: Bake `mkcert` into the [devcontainer Dockerfile](/.devcontainer/Dockerfile).
+
+## Useful
 
 - [React Dev Tools Chrome Extension](https://github.com/facebook/react)
 - [Redux Dev Tools Chrome Extension](https://github.com/reduxjs/redux-devtools)
+
 
 ## Running the Application
 
 ```sh
 docker compose up
 ```
-This will start PostgreSQL, a frontend react server, and the backend API server.
+
+This will start PostgreSQL, a frontend React server, the backend API server, and a
+[traefik](#local-ssh) container.
+
 
 ```sh
 docker compose up --build
 ```
+
 This will start everything after rebuilding our containers.
 
 ### Populate Local Data
-The following command will populate your database wtih the basic demo application.
+
+The application can't be tested without data, so you'll need to populate it with some
+dummy data. Data for local development is located in
+[assessmentHurdleExamples/resumeYesNoOnlySmall/](/assessmentHurdleExamples/resumeYesNoOnlySmall).
+
+`cd` to `assessmentHurdleExamples/` and load it like this:
 
 ```sh
-cd ./api/agencyInfo/ && ./localHiringAction.sh
+TOKEN=admin \
+HOST=http://localhost:8000 \
+AGENCY_DIR=resumeYesNoOnlySmall \
+./util/hiringAction.sh
 ```
+
+Note: even though Trafik is terminating SSL on port `4433`, both the frontend and API
+continue to be exposed over HTTP ports.
+
 
 ### Local SSL
 [docker-compose.yml](/docker-compose.yml) is configured to serve the application
