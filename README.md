@@ -6,6 +6,8 @@ It is currently used by GSA TTS.
 
 This app contains the resume review checklist used by both HR and SMEs.
 
+Jump to [Extended Documentation](#extended-documentation) for docs on local development and operations for the app on Cloud.gov.
+
 ## SME-QA Assessment Review Tool (ART)
 
 The SME-QA Assessment Review Tool is a micro-app built for evaluating competency/TKS/KSA/etc statements against applicant provided materials - usually in the form of a resume and/or portfolio. Each statement can be evaluated against the materials until the applicant either passes or fails the evaluation, at which point the evaluator is able to move on.
@@ -34,6 +36,7 @@ The caching is fairly aggressive for the build process. This might cause some is
 
 # Extended Documentation
 
+- [Cloud.gov (including CLI login instructions)](/docs/cloudDotGov.md)
 - [Local Development Guide](/docs/localDevelopment.md)
 - [Database docs and how to connect to a production database](/db/README.md)
 - [Hiring action files and scripts](/assessmentHurdleExamples/README.md)
