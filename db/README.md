@@ -1,5 +1,5 @@
 # Login to Cloud.gov
-See: [Cloud.gov - How-to Login from the CLI](/docs/cloudDotGov#how-to-login-from-the-cli).
+See: [/docs/cloudDotGov.md](#how-to-login-from-the-cli).
 
 # Connecting to the SMEQA application database
 First, ensure that you've selected the correct Cloud Foundry `target` either during

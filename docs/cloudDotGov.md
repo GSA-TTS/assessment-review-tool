@@ -13,7 +13,8 @@ which you'll use to complete the login process. Visit the URL, login, and copy t
 token to the prompt on the command line.
 
 Note: `cf` is installed in the dev container which is defined in [/.devcontainer](./devcontainer).
-See: [/docs/localDevelopment.md#dev-container](Dev Container).
+
+See: [/docs/localDevelopment.md](#dev-container).
 
 ## How-to do command-line ops for Cloud.gov
 In your running dev container, either on your OS or in a GitHub Codespace,
@@ -22,4 +23,4 @@ login to `cf` by following the login instructions in this document. Then, run wh
 
 - `cf target` to change your local Cloud Foundtry "target."
 - `cf services` to list all services, including databases.
-- `cf connect-to-service` to connect to the app's PostgreSQL database. See: [/db/README.md](Connecting to the SMEQA application database).
+- `cf connect-to-service` to connect to the app's PostgreSQL database. See: [/db/README.md](connecting-to-the-smeqa-application-database).
