@@ -3,7 +3,7 @@ You'll need [Rancher](https://www.rancher.com) or another container runtime to r
 this application locally.
 
 The recommended way to develop on this app is by using the supplied
-[dev container](#dev-container), which includes support for Docker-in-Docker (DnD).
+[dev container](#dev-container), which includes support for Docker-in-Docker (DinD).
 This means you can run the dev-container container _and_ the containers defined
 in the [docker-compose.yml](/docker-compose.yml) file inside of it. The supplied dev
 container config is is also used to specify the

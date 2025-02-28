@@ -12,7 +12,7 @@ This will provide you with a URL to Cloud.gov where you'll obtain a temporary to
 which you'll use to complete the login process. Visit the URL, login, and copy the
 token to the prompt on the command line.
 
-Note: `cf` is installed in the dev container which is defined in [/.devcontainer](./devcontainer).
+Note: `cf` is installed in the dev container which is defined in [.devcontainer](/.devcontainer).
 
 See: [/docs/localDevelopment.md](#dev-container).
 
