@@ -1,29 +1,25 @@
 # Local Development
+You'll need [Rancher](https://www.rancher.com) or another container runtime to run
+this application locally.
 
-You'll need Rancher to run this application locally. You can use another container runtime
-but you'll need a way to use the application's [docker-compose.yml](/docker-compose.yml)
-file so the simplest path forward is just to use Rancher, which ships with docker-compose
-compatibility.
+The recommended way to develop on this app is by using the supplied
+[dev container](#dev-container), which includes support for Docker-in-Docker (DinD).
+This means you can run the dev-container container _and_ the containers defined
+in the [docker-compose.yml](/docker-compose.yml) file inside of it. The supplied dev
+container config is is also used to specify the
+[GitHub Codespace](#github-codespace) environment.
 
-You will likely encounter difficulties trying to run this on your GFE. One path
- is to use a [GitHub Codespace](#github-codespace).
+You will likely encounter difficulties running containers on your GFE. One path is
+to use a [GitHub Codespace](#github-codespace) which avoids the need to run anything
+locally altogether.
 
-# Tools
-## Necessary
-
-- jq
-- Rancher
-- [mkcert](https://github.com/FiloSottile/mkcert)
-
-TODO: Bake `mkcert` into the [devcontainer Dockerfile](/.devcontainer/Dockerfile).
-
-## Useful
-
+## Useful Tools
 - [React Dev Tools Chrome Extension](https://github.com/facebook/react)
 - [Redux Dev Tools Chrome Extension](https://github.com/reduxjs/redux-devtools)
 
-
 ## Running the Application
+You can run these `docker` commands from your OS or from within the running dev
+container, either running on your OS or from a GitHub Codespace.
 
 ```sh
 docker compose up
@@ -32,7 +28,6 @@ docker compose up
 This will start PostgreSQL, a frontend React server, the backend API server, and a
 [traefik](#local-ssh) container.
 
-
 ```sh
 docker compose up --build
 ```
@@ -40,7 +35,6 @@ docker compose up --build
 This will start everything after rebuilding our containers.
 
 ### Populate Local Data
-
 The application can't be tested without data, so you'll need to populate it with some
 dummy data. Data for local development is located in
 [assessmentHurdleExamples/resumeYesNoOnlySmall/](/assessmentHurdleExamples/resumeYesNoOnlySmall).
@@ -54,9 +48,9 @@ AGENCY_DIR=resumeYesNoOnlySmall \
 ./util/hiringAction.sh
 ```
 
-Note: even though Trafik is terminating SSL on port `4433`, both the frontend and API
-continue to be exposed over HTTP ports.
-
+Note: even though Trafik is terminating SSL on port `4433`
+(see [Local SSL](#local-ssl)), both the frontend and API continue to be exposed
+over HTTP ports.
 
 ### Local SSL
 [docker-compose.yml](/docker-compose.yml) is configured to serve the application
@@ -67,8 +61,13 @@ application over HTTP. Fortunately, docker-compose.yaml is already configured to
 HTTPS over port `4443` using using [Traefik](https://traefik.io/), provided you have
 generated a local certificate and stored it in [localcert/](/localcert/).
 
+Note: SSL termination with Traefik has not been tested in the Codespace environment. As
+of now this is left as an exercise for the reader.
+
 Use [mkcert](https://github.com/FiloSottile/mkcert) to generate a local certificate
 and key for use by Traefik.
+
+TODO: Bake `mkcert` into the [devcontainer Dockerfile](/.devcontainer/Dockerfile).
 
 ```bash
 mkcert -ecdsa -key-file domain.key -cert-file domain.crt smeqa.local "*.smeqa.local"
@@ -97,13 +96,29 @@ Edit your `/etc/hosts` file such that this domain resolves to your local.
 Now, you can access the application over HTTPS at
 [https://smeqa.local:4443](https://smeqa.local:4443).
 
+### Dev Container
+This repo includes a [dev container](/.devcontainer), which configures a Docker container
+with a complete development environment for this application. It's an isolated,
+pre-configured environment that includes everything necessary to do development and ops
+work for SMEQA.
+
+You can use the dev container from within Visual Studio Code running on your workstation
+or running on the web in a [GitHub Codespace](#github-codespace).
+
+See also:
+- [Introduction to dev containers](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)
+- [Development Containers](https://containers.dev/).
+
+Note: To use `cf` from the running dev container, you'll need to use it from within
+VSCode's built-in terminal, not your OS terminal (though I guess you could `exec`
+into the running dev-container container). This is obvious but it's worth stating
+if it saves someone a few minutes of confusion.
 
 ### GitHub Codespace
-This repo is configured with a [.devcontainer](/.devcontainer) to allow you to do
-development and ops work from within a GitHub Codespace.
+An convenient way to develop on this application using the dev container is from
+a GitHub codespace environment.
 
-SSL termination with Traefik has not been tested in the Codespace environment. As
-of now this is left as an exercise for the reader.
+See: [GitHub Codespaces overview](https://docs.github.com/en/codespaces/overview).
 
 #### Signing Commits
 GitHub will refuse to recognize any other GPG key than the one that _it_ wants to sign with inside of
