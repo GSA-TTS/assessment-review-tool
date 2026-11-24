@@ -1,13 +1,28 @@
 # Notes on Buildpack and Node versions
 
-Accurate as of when this was committed.
+Accurate as of November 2026.
+
+## Why `engines.node` is a range
+
+The Cloud.gov `nodejs_buildpack` only ships currently supported Node lines and
+removes old ones (and old patch versions) without notice. Pinning an exact version,
+e.g. `18.20.6`, causes `cf restage` / `cf push` to fail with:
+
+```
+**ERROR** Unable to install node: no match found for 18.20.6 in [22.23.5 24.22.3]
+```
+
+The api `engines.node` is therefore set to `22.x` so staging picks up whatever Node 22
+release the buildpack currently provides. Do not pin an exact version again.
+Check the available versions in the
+[nodejs-buildpack releases](https://github.com/cloudfoundry/nodejs-buildpack/releases).
 
 ## Api
 
 Api is built by a GitHub Action workflow which uses Node 14. This is declared in
 [.github/workflows/push-prod.yml](/.github/workflows/push-prod.yml)
 
-[package.json](/api/package.json) configures `engine` to 18.20.4. The api
+[package.json](/api/package.json) configures `engine` to `22.x`. The api
 [/api/Dockerfile](Dockerfile), which is only used for local development, uses an
 older version of Node.
 
@@ -22,7 +37,7 @@ potentially significant source code changes.
 
 On Cloud.gov, api and frontend run in the same process, by the same buildpack
 instance. The GitHub Action which deploys api deploys it alongside frontend, and
-they both run in Node 18.
+they both run in Node 22.
 
 The team's assumption is that `engine`’s Node version was bumped based on output from the
 NodeJS buildpack during the GitHub Action run, which (looking at past, successful
@@ -40,7 +55,8 @@ environment for both frontend and api, was updated to the (much) newer Node vers
 accordingly.
 
 At the Deploy to Cloud.gov step during the GitHub Action defined in `push-prod.yml`,
-Node 18 is installed because of the package.json requirement. Logs:
+the Node version from the package.json requirement is installed. Example logs
+from an older deploy (Node 18 at the time; it is now 22):
 
 ```
 -----> Installing binaries
