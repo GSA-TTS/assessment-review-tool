@@ -27,43 +27,43 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.branch_name }}
-      # - uses: actions/cache@v2
+      # - uses: actions/cache@v4
       #   with:
       #     path: ~/.npm
       #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       #     restore-keys: |
       #       ${{ runner.os }}-node-
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: api-npm-cache
         with:
           path: ./api/node_modules/
           key: ${{ runner.os }}-api-npm-${{ hashFiles('./api/package-lock.json') }}
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: frontend-npm-cache
         with:
           path: ./frontend/node_modules/
           key: ${{ runner.os }}-frontend-npm-${{ hashFiles('./frontend/package-lock.json') }}
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: frontend-scss-cache
         with:
           path: ./frontend/src/styles/
           key: ${{ runner.os }}-frontend-scss-${{ hashFiles('./frontend/src/scss/**.scss') }}
 
       # Notice that the cache for the frontend is actually in the api directory...
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         id: frontend-src-cache
         with:
           path: ./api/src/client
           key: ${{ runner.os }}-frontend-src-${{ hashFiles('./frontend/src/**/*', './frontend/package.json') }}
 
       # Build frontend (requires node 16)
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: "16"
 
@@ -83,7 +83,7 @@ jobs:
         working-directory: frontend
 
       # Build backend (requires node 14)
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: "14"
 
