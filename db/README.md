@@ -1,20 +1,17 @@
-# Cheatsheet
-To login to Cloud.gov from the command line using `cf`:
+# Login to Cloud.gov
+See: [/docs/cloudDotGov.md](#how-to-login-from-the-cli).
+
+# Connecting to the SMEQA application database
+First, ensure that you've selected the correct Cloud Foundry `target` either during
+the `cf login` process or by using `cf target`.
+
+Then, use `connect-to-service`:
 
 ```sh
-cf login -a api.fr.cloud.gov --sso
-```
-
-Note: `cf` is installed in the devcontainer (i.e. GitHub Codespace) which is defined in [/.devcontainer](./devcontainer).
-See: [/docs/localDevelopment.md#github-codespace](GitHub Codespace).
-
-To connect to PostgreSQL, which will drop you to a `psql` prompt:
-
-```
 cf connect-to-service <app-name> <database-name>
 ```
 
-To obtain the name of the database (because the database is a Cloudfoundry `service`):
+To obtain the database name (because the database is a Cloud Foundry `service`), run:
 
 ```sh
 cf services
@@ -23,7 +20,7 @@ cf services
 # Schema
 [Schema](../backend/db)
 
-# Connecting to the database -- Development & Staging
+# Binding an app instance to the database -- Development & Staging
 
 Staging is done on primarily in gsa-open-ops cloud.gov space. It is a postgresql on AWS RDS.
 
